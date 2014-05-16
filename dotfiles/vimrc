@@ -1,0 +1,163 @@
+let mapleader = "-"
+let maplocalleader = "\\"
+
+call pathogen#infect()	"Start pathogen
+syntax on
+filetype plugin indent on
+
+"Some basic settings ----------------------- {{{
+set ai		"Turn on the auto indent
+set nu		"Display line numbers
+set nowrap	"Turn of line wraping
+
+nnoremap <leader>t :NERDTreeToggle<CR>
+
+"Configure the status line -------------------- {{{
+set laststatus=2	"Always display a status line 
+set statusline=%f	"Display the file name
+set statusline+=\%5r
+set statusline+=\ bufnum:%n
+"\/Show the file type
+set statusline+=\ %y
+"\/On line n\m
+set statusline+=%=	"Switch sides
+set statusline+=\ [%4l/%-4L]
+"}}}
+"}}}
+
+
+"Move between windows and tabs mapping -------- {{{
+nnoremap fh :wincmd h<cr>
+nnoremap fl :wincmd l<cr>
+nnoremap fj :wincmd j<cr>
+nnoremap fk :wincmd k<cr>
+
+nnoremap th :tabp<cr>
+nnoremap tl :tabn<cr>
+"}}}
+
+
+"Disable moving with the arrow keys ---------- {{{
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+"}}}
+"Some random useful mappings ---------- {{{
+
+"Change the line number format
+nnoremap <leader>n :if &number <cr> set relativenumber <cr> else <cr> set number <cr> endif <cr><cr>
+
+"Convert a word to uppercase
+inoremap <c-u> <esc>viwU$a
+nnoremap <c-u> viwU
+
+"Open the vimrc file in a split window and then source the file for changes to take effect
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"Do a search and replace in the visual range only
+vnoremap <leader>s :s/\%V
+
+"Map home to H and end to L ------- {{{
+nnoremap H <Home>
+vnoremap H <Home>
+nnoremap L <End>
+vnoremap L <End>
+"}}}
+
+"Comment a line, currently only works for python
+nnoremap <leader>c <Home>i#<esc>
+nnoremap <leader>d <Home>x
+
+"put quotes around a word --------------------- {{{
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+"put quotes around a viualy selected area
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>ll
+vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>ll
+"}}}
+
+"Move out of insert mode by typing jk
+inoremap jk <esc>
+inoremap <esc> <nop>
+"}}}
+
+"Email and some other good abreviations ------ {{{
+inoreabbrev @@ whatshebuildinginthere@hotmail.com 
+inoreabbrev nname George Roger
+inoreabbrev ssig George Roger<cr>whatshebuildinginthere@hotmail.com<cr>
+"}}}
+"C++ File setings -------------------- {{{
+augroup filetype_cpp 
+	autocmd!
+	"Set up abbreviations for include and define and remove the old way of doing things
+	autocmd FileType cpp :inoreabbrev <buffer> hinc #include
+	autocmd FileType cpp :inoreabbrev <buffer> hdef #define
+	"Some more specific abbreviation
+	autocmd FileType cpp :inoreabbrev <buffer> hio #include <iostream>
+	autocmd FileType cpp :inoreabbrev <buffer> hstd #include <stdlib.h>
+
+	"Set up a auto cmd for cpp files
+	autocmd FileType cpp nnoremap <buffer> <localleader>c :execute "normal! I//\e"<cr>
+	autocmd Filetype cpp vnoremap <buffer> <localleader>c :<c-u>execute "normal! `<O/*\e`>o*/"<cr>
+	"autocmd FileType cpp nnoremap <buffer> <localleader>dc :execute "normal! ?\\/\\*\rxx/\\*\\/\rxx"<cr>
+	autocmd FileType cpp nnoremap <buffer> <localleader>dc :call DeleteCppComment()<cr>
+
+	"Abbreviate the new line character
+	autocmd FileType cpp inoremap <buffer> "nn "\n
+
+	"Anything that needs std:: in front of it
+	autocmd FileType cpp :inoreabbrev <buffer> cout std::cout <<
+	autocmd FileType cpp :inoreabbrev <buffer> cflush std::cout.flush();
+	autocmd FileType cpp :inoreabbrev <buffer> fstream std::fstream
+	autocmd FileType cpp :inoreabbrev <buffer> string std::string
+
+augroup END
+"}}}
+"Vim script file setting ----------- {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim nnoremap <buffer> <localleader>c :execute "normal! I\"\e"<cr>
+	autocmd FileType vim noremap <buffer> <localleader>n /^function!
+	autocmd FileType vim noremap <buffer> <localleader>n ?^function!
+	autocmd FileType vim :setlocal foldmethod=marker
+	autocmd FileType vim :setlocal foldcolumn=2
+	autocmd FileType vim :highlight Folded ctermbg=0 ctermfg=7
+	autocmd FileType vim :highlight FoldColumn ctermbg=0 ctermfg=7
+
+	"Check :help ignorecase | :help :expr4
+	autocmd Filetype vim :inoreabbrev <buffer> == ==#
+	autocmd Filetype vim :inoreabbrev <buffer> != !=# 
+	autocmd Filetype vim :inoreabbrev <buffer> > >#
+	autocmd Filetype vim :inoreabbrev <buffer> < <#
+	autocmd Filetype vim :inoreabbrev <buffer> >= >=#
+	autocmd Filetype vim :inoreabbrev <buffer> <= <=#
+	autocmd Filetype vim :inoreabbrev <buffer> =~ =~#
+	autocmd Filetype vim :inoreabbrev <buffer> !~ !~#
+	autocmd Filetype vim :inoreabbrev <buffer> is is#
+	autocmd Filetype vim :inoreabbrev <buffer> isnot isnot#
+augroup END
+"}}}
+"Shell script file settings ------------- {{{
+augroup filetype_sh
+	autocmd!
+	autocmd FileType sh nnoremap <buffer> <localleader>c :call ToggleShellComment()<cr>
+augroup END
+"}}}
+
+augroup filetype_glsl
+	autocmd!
+	autocmd BufNewFile,BufRead *.vert,*.frag setf glsl
+augroup END
+
+augroup filetype_lol
+	autocmd!
+	autocmd BufNewFile,BufRead *.lol setf lolcode
+augroup END
+
+"filetype plugin indent on
