@@ -149,3 +149,9 @@ fi
 JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
 
 alias webshare="ifconfig | grep inet; python -m SimpleHTTPServer"
+
+function mkcd()
+{
+	mkdir $1
+	cd $1
+}
