@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/george/Development/chrome_extensions/tabping'
-let g:netrw_dirhist_2='/home/george/Development/cppStuff/squirrel_test/models'
-let g:netrw_dirhist_3='/home/george/Documents/MajorProject/Drafts'
-let g:netrw_dirhist_4='/home/george/Development/cppStuff/squirrel_test/src'
-let g:netrw_dirhist_5='/home/george/Documents/MajorProject/Notes'
-let g:netrw_dirhist_6='/home/george/Documents/MajorProject/TheDocument/content'
-let g:netrw_dirhist_7='/home/george/dotfiles'
