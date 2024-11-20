@@ -37,6 +37,8 @@ function gdiff {
 
 export PS1="$ "
 
+export GRAPHCORE_ARTIFACTORY_TOKEN=$(cat ~/.artifactory_token)
+
 alias cls="clear"
 
 eval "$(zoxide init zsh)"
