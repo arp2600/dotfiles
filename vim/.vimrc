@@ -69,6 +69,7 @@ Plugin 'NoahTheDuke/vim-just'
 
 Plugin 'Glench/Vim-Jinja2-Syntax.git'
 
+Plugin 'ledger/vim-ledger.git'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -228,3 +229,9 @@ inoremap [[     [
 inoremap []     []
 inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
+" hledger
+" au FileType ledger noremap { ?^\d<CR>
+" au FileType ledger noremap } /^\d<CR>
+let g:ledger_is_hledger = v:true
+let g:ledger_fuzzy_account_completion = 1
+au FileType ledger setlocal tabstop=4 shiftwidth=4
