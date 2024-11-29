@@ -37,7 +37,7 @@ function gdiff {
 
 export PS1="$ "
 
-export GRAPHCORE_ARTIFACTORY_TOKEN=$(cat ~/.artifactory_token)
+source .tokens
 
 alias cls="clear"
 
