@@ -37,7 +37,7 @@ function gdiff {
 
 export PS1="$ "
 
-source .tokens
+source ~/.tokens
 
 alias cls="clear"
 
