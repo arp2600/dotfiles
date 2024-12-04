@@ -237,3 +237,5 @@ inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]
 let g:ledger_is_hledger = v:true
 let g:ledger_fuzzy_account_completion = 1
 au FileType ledger setlocal tabstop=4 shiftwidth=4
+
+map <leader>D :put = strftime('%Y-%m-%d')<CR>Ea<Space>
