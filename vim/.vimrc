@@ -71,6 +71,8 @@ Plugin 'Glench/Vim-Jinja2-Syntax.git'
 
 Plugin 'ledger/vim-ledger.git'
 
+Plugin 'vimwiki/vimwiki'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " =====================================================================
