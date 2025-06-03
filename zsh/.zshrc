@@ -42,3 +42,5 @@ source ~/.tokens
 alias cls="clear"
 
 eval "$(zoxide init zsh)"
+
+export PATH=$PATH:~/.local/bin
