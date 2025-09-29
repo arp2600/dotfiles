@@ -73,6 +73,8 @@ Plugin 'ledger/vim-ledger.git'
 
 Plugin 'vimwiki/vimwiki'
 
+Plugin 'ConradIrwin/vim-bracketed-paste.git'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " =====================================================================
@@ -193,7 +195,9 @@ let g:slime_cell_delimiter = "# %%"
 nmap <leader>s <Plug>SlimeSendCell
 nmap <leader>x :SlimeSendCurrentLine<CR>
 
+-" Default config for slime as I usually have vim on the right pane
 let g:slime_default_config = {"socket_name": "default", "target_pane": "0"}
+let g:slime_dont_ask_default = 1
 
 augroup pir_ft
   au!

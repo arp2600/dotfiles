@@ -42,3 +42,7 @@ alias cls="clear"
 # eval "$(zoxide init zsh)"
 
 export PATH=$PATH:~/.local/bin
+
+# Prevents ctrl-d closing panes in tmux
+# 10 consecutive eofs will still cause the pane to close
+setopt ignoreeof
