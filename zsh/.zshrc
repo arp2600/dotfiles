@@ -37,10 +37,8 @@ function gdiff {
 
 export PS1="$ "
 
-source ~/.tokens
-
 alias cls="clear"
 
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 export PATH=$PATH:~/.local/bin

@@ -54,7 +54,7 @@ Plugin 'tpope/vim-abolish'
 
 Plugin 'majutsushi/tagbar'
 
-Plugin 'vim-scripts/AnsiEsc.vim'
+" Plugin 'vim-scripts/AnsiEsc.vim'
 
 Plugin 'jpalardy/vim-slime'
 
@@ -191,6 +191,9 @@ let g:slime_bracketed_paste = 1
 
 let g:slime_cell_delimiter = "# %%"
 nmap <leader>s <Plug>SlimeSendCell
+nmap <leader>x :SlimeSendCurrentLine<CR>
+
+let g:slime_default_config = {"socket_name": "default", "target_pane": "0"}
 
 augroup pir_ft
   au!
